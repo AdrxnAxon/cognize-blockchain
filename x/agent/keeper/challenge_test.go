@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"x/agent/x/agent/keeper"
+	"github.com/cognize/axon/x/agent/keeper"
 	"github.com/cognize/axon/x/agent/types"
 )
 

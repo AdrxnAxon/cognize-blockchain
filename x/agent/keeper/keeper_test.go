@@ -12,7 +12,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"x/agent/x/agent/keeper"
+	"github.com/cognize/axon/x/agent/keeper"
 	"github.com/cognize/axon/x/agent/types"
 )
 

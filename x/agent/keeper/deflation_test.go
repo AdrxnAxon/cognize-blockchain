@@ -6,7 +6,7 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 
-	"x/agent/x/agent/keeper"
+	"github.com/cognize/axon/x/agent/keeper"
 	"github.com/cognize/axon/x/agent/types"
 )
 

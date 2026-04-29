@@ -1,11 +1,22 @@
 package types
 
-import "encoding/binary"
+import (
+	"encoding/binary"
+	"strconv"
+)
 
 const (
 	ModuleName = "agent"
 	StoreKey   = ModuleName
 	RouterKey  = ModuleName
+
+	MaxServiceNameLength     = 64
+	MaxServiceDescriptionLen = 256
+	MaxTaskTitleLength    = 64
+	MaxTaskDescriptionLen = 512
+	MaxProposalLength   = 1024
+	MaxToolNameLength    = 64
+	MaxToolDescriptionLen = 512
 
 	ParamsKey = "Params"
 
@@ -31,6 +42,17 @@ const (
 
 	PendingReduceStakeKeyPrefix = "PendingReduceStake/"
 	LastDailyRegCleanupDayKey   = "LastDailyRegCleanupDay"
+
+	ServiceIdPrefix       = "Service/"
+	ServiceCallPrefix    = "ServiceCall/"
+	ToolPrefix           = "Tool/"
+	ToolCallPrefix       = "ToolCall/"
+	GovernanceProposalID = "Governance/next_id"
+	GovernanceProposalKeyPrefix = "Governance/proposal/"
+	GovernanceVoteKeyPrefix = "Governance/vote/"
+
+	EscrowPrefix       = "Escrow/"
+	StablecoinVaultPrefix = "StablecoinVault/"
 )
 
 func KeyPendingReduceStake(address string) []byte {
@@ -103,4 +125,28 @@ func BytesToUint64(b []byte) uint64 {
 		return 0
 	}
 	return binary.BigEndian.Uint64(b)
+}
+
+func KeyService(id string) []byte {
+	return []byte(ServiceIdPrefix + id)
+}
+
+func KeyTool(id string) []byte {
+	return []byte(ToolPrefix + id)
+}
+
+func KeyGovernanceProposal(id uint64) []byte {
+	return []byte(GovernanceProposalKeyPrefix + strconv.FormatUint(id, 10))
+}
+
+func KeyGovernanceVote(id uint64, voter string) []byte {
+	return []byte(GovernanceVoteKeyPrefix + strconv.FormatUint(id, 10) + "/" + voter)
+}
+
+func KeyEscrow(id string) []byte {
+	return []byte(EscrowPrefix + id)
+}
+
+func KeyStablecoinVault(denom string) []byte {
+	return []byte(StablecoinVaultPrefix + denom)
 }
