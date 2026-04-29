@@ -1,9 +1,6 @@
 package types
 
-import (
-	"encoding/binary"
-	"fmt"
-)
+import "encoding/binary"
 
 const (
 	ModuleName = "agent"
@@ -34,25 +31,6 @@ const (
 
 	PendingReduceStakeKeyPrefix = "PendingReduceStake/"
 	LastDailyRegCleanupDayKey   = "LastDailyRegCleanupDay"
-
-	ServiceIdPrefix   = "Service/"
-	ServiceCallPrefix = "ServiceCall/"
-	TaskPrefix        = "Task/"
-	TaskBidPrefix    = "TaskBid/"
-	ToolPrefix       = "Tool/"
-	ToolCallPrefix   = "ToolCall/"
-
-	MaxServiceNameLength       = 64
-	MaxServiceDescriptionLen = 500
-	MaxTaskTitleLength       = 128
-	MaxTaskDescriptionLen    = 2000
-	MaxProposalLength       = 1000
-
-	DefaultTaskDeadlineBlocks = 2880
-
-	GovernanceProposalKeyPrefix = "Governance/proposal/"
-	GovernanceVoteKeyPrefix = "Governance/vote/"
-	GovernanceProposalIDKey = "Governance/next_id"
 )
 
 func KeyPendingReduceStake(address string) []byte {
@@ -125,12 +103,4 @@ func BytesToUint64(b []byte) uint64 {
 		return 0
 	}
 	return binary.BigEndian.Uint64(b)
-}
-
-func KeyGovernanceProposal(id uint64) []byte {
-	return []byte(GovernanceProposalKeyPrefix + fmt.Sprintf("%050d", id))
-}
-
-func KeyGovernanceVote(proposalID uint64, voter string) []byte {
-	return []byte(GovernanceVoteKeyPrefix + fmt.Sprintf("%050d/", proposalID) + voter)
 }

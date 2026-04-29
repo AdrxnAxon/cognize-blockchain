@@ -8,15 +8,15 @@ import (
 )
 
 func RegisterCodec(cdc *codec.LegacyAmino) {
-	cdc.RegisterConcrete(&MsgRegister{}, "cognize/agent/MsgRegister", nil)
-	cdc.RegisterConcrete(&MsgAddStake{}, "cognize/agent/MsgAddStake", nil)
-	cdc.RegisterConcrete(&MsgReduceStake{}, "cognize/agent/MsgReduceStake", nil)
-	cdc.RegisterConcrete(&MsgClaimReducedStake{}, "cognize/agent/MsgClaimReducedStake", nil)
-	cdc.RegisterConcrete(&MsgUpdateAgent{}, "cognize/agent/MsgUpdateAgent", nil)
-	cdc.RegisterConcrete(&MsgHeartbeat{}, "cognize/agent/MsgHeartbeat", nil)
-	cdc.RegisterConcrete(&MsgDeregister{}, "cognize/agent/MsgDeregister", nil)
-	cdc.RegisterConcrete(&MsgSubmitAIChallengeResponse{}, "cognize/agent/MsgSubmitAIChallengeResponse", nil)
-	cdc.RegisterConcrete(&MsgRevealAIChallengeResponse{}, "cognize/agent/MsgRevealAIChallengeResponse", nil)
+	cdc.RegisterConcrete(&MsgRegister{}, "axon/agent/MsgRegister", nil)
+	cdc.RegisterConcrete(&MsgAddStake{}, "axon/agent/MsgAddStake", nil)
+	cdc.RegisterConcrete(&MsgReduceStake{}, "axon/agent/MsgReduceStake", nil)
+	cdc.RegisterConcrete(&MsgClaimReducedStake{}, "axon/agent/MsgClaimReducedStake", nil)
+	cdc.RegisterConcrete(&MsgUpdateAgent{}, "axon/agent/MsgUpdateAgent", nil)
+	cdc.RegisterConcrete(&MsgHeartbeat{}, "axon/agent/MsgHeartbeat", nil)
+	cdc.RegisterConcrete(&MsgDeregister{}, "axon/agent/MsgDeregister", nil)
+	cdc.RegisterConcrete(&MsgSubmitAIChallengeResponse{}, "axon/agent/MsgSubmitAIChallengeResponse", nil)
+	cdc.RegisterConcrete(&MsgRevealAIChallengeResponse{}, "axon/agent/MsgRevealAIChallengeResponse", nil)
 }
 
 func RegisterInterfaces(registry types.InterfaceRegistry) {
@@ -31,12 +31,7 @@ func RegisterInterfaces(registry types.InterfaceRegistry) {
 		&MsgSubmitAIChallengeResponse{},
 		&MsgRevealAIChallengeResponse{},
 	)
-
-	// FIX: Workaround for nil HandlerType bug in SDK v0.54.0-rc.1 when HandlerType is nil
-	// This happens because the generated code has HandlerType set to nil interface
-	if Msg_ServiceDesc.HandlerType != nil {
-		msgservice.RegisterMsgServiceDesc(registry, &Msg_ServiceDesc)
-	}
+	msgservice.RegisterMsgServiceDesc(registry, &Msg_ServiceDesc)
 }
 
 var (

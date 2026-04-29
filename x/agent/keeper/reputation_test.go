@@ -3,7 +3,7 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/cognize/axon/x/agent/keeper"
+	"x/agent/x/agent/keeper"
 	"github.com/cognize/axon/x/agent/types"
 )
 
