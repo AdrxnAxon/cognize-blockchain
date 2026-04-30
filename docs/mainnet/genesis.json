@@ -7,40 +7,70 @@
   "app_hash": null,
   "app_state": {
     "07-tendermint": null,
-    "agent": {
-      "params": {
-        "min_register_stake": 100,
-        "register_burn_amount": 20,
-        "contract_deploy_burn": "10",
-        "initial_reputation": "10",
-        "max_reputation": 100,
-        "heartbeat_interval": "100",
-        "heartbeat_timeout": 720,
-        "epoch_length": 720,
-        "ai_challenge_window": 50,
-        "contribution_cap_bps": "200",
-        "alpha": "0.5",
-        "beta": "1.5",
-        "r_max": "100",
-        "l1_cap": "40",
-        "l2_cap": "30",
-        "l1_decay_per_epoch": "0.1",
-        "l2_decay_per_epoch": "0.05",
-        "l2_min_reporter_rep": "30",
-        "l2_min_account_age": "120960",
-        "l2_budget_per_agent": "0.1",
-        "l2_budget_cap": "100",
-        "l2_abuse_threshold": "50",
-        "l2_mutual_report_penalty": "0.1",
-        "l2_no_evidence_weight": "0.3",
-        "proposer_reward_bps": "2000",
-        "validator_pool_bps": "5500",
-        "reputation_pool_bps": "2500",
-        "contribution_cap_multiplier": "3.0"
-      },
-      "agents": []
-    },
-    "auth": {
+      "agent": {
+        "params": {
+          "min_register_stake": 100,
+          "register_burn_amount": 20,
+          "contract_deploy_burn": "10",
+          "initial_reputation": "10",
+          "max_reputation": 100,
+          "heartbeat_interval": "50",
+          "heartbeat_timeout": 200,
+          "epoch_length": 720,
+          "ai_challenge_window": 50,
+          "contribution_cap_bps": "200",
+          "alpha": "0.5",
+          "beta": "1.5",
+          "r_max": "100",
+          "l1_cap": "40",
+          "l2_cap": "30",
+          "l1_decay_per_epoch": "0.1",
+          "l2_decay_per_epoch": "0.05",
+          "l2_min_reporter_rep": "30",
+          "l2_min_account_age": "120960",
+          "l2_budget_per_agent": "0.1",
+          "l2_budget_cap": "100",
+          "l2_abuse_threshold": "50",
+          "l2_mutual_report_penalty": "0.1",
+          "l2_no_evidence_weight": "0.3",
+          "proposer_reward_bps": "1500",
+          "validator_pool_bps": "3500",
+          "reputation_pool_bps": "2000",
+          "privacy_share_bps": "300",
+          "governance_share_bps": "700",
+          "service_share_bps": "800",
+          "ai_challenge_share_bps": "700",
+          "staking_share_bps": "500",
+          "contribution_cap_multiplier": "3.0",
+          "register_burn": "25000000",
+          "deploy_burn": "10000000",
+          "service_burn": "5000000",
+          "dataset_burn": "15000000",
+          "model_burn": "20000000",
+          "missed_heartbeat_penalty1": "-5",
+          "missed_heartbeat_penalty2": "-15",
+          "missed_heartbeat_penalty3": "-50",
+          "offline_penalty": "-100"
+        },
+        "agents": []
+       },
+       "oracle": {
+         "params": {
+           "min_reporters": 5,
+           "update_interval": "10",
+           "default_reporter_bond": "100000000",
+           "slash_threshold_sigma": 3,
+           "reporter_bond_slash": "0.5",
+           "missed_report_penalty": "0.01",
+           "max_report_age": "200",
+           "aggregation": "median"
+         },
+         "feeds": [],
+         "reporters": [],
+         "reports": [],
+         "feed_values": []
+       },
+     "auth": {
       "params": {
         "max_memo_characters": "256",
         "tx_sig_limit": "7",
@@ -268,44 +298,47 @@
         }
       ]
     },
-    "gov": {
-      "starting_proposal_id": "1",
-      "deposits": [],
-      "votes": [],
-      "proposals": [],
-      "deposit_params": null,
-      "voting_params": null,
-      "tally_params": null,
-      "params": {
-        "min_deposit": [
-          {
-            "denom": "aaxon",
-            "amount": "10000000000000000000000"
-          }
-        ],
-        "max_deposit_period": "172800s",
-        "voting_period": "604800s",
-        "quorum": "0.334000000000000000",
-        "threshold": "0.500000000000000000",
-        "veto_threshold": "0.334000000000000000",
-        "min_initial_deposit_ratio": "0.000000000000000000",
-        "proposal_cancel_ratio": "0.500000000000000000",
-        "proposal_cancel_dest": "",
-        "expedited_voting_period": "86400s",
-        "expedited_threshold": "0.667000000000000000",
-        "expedited_min_deposit": [
-          {
-            "denom": "stake",
-            "amount": "50000000"
-          }
-        ],
-        "burn_vote_quorum": false,
-        "burn_proposal_deposit_prevote": false,
-        "burn_vote_veto": true,
-        "min_deposit_ratio": "0.010000000000000000"
+      "gov": {
+        "starting_proposal_id": "1",
+        "deposits": [],
+        "votes": [],
+        "proposals": [],
+        "deposit_params": null,
+        "voting_params": null,
+        "tally_params": null,
+        "params": {
+          "min_deposit": [
+            {
+              "denom": "aaxon",
+              "amount": "10000000000000000000000"
+            }
+          ],
+          "max_deposit_period": "172800s",
+          "voting_period": "259200s",
+          "voting_period_critical": "604800s",
+          "voting_period_emergency": "14400s",
+          "quorum": "0.250000000000000000",
+          "threshold": "0.500000000000000000",
+          "veto_threshold": "0.334000000000000000",
+          "min_initial_deposit_ratio": "0.000000000000000000",
+          "proposal_cancel_ratio": "0.500000000000000000",
+          "proposal_cancel_dest": "",
+          "expedited_voting_period": "86400s",
+          "expedited_threshold": "0.667000000000000000",
+          "critical_param_threshold": "0.667000000000000000",
+          "expedited_min_deposit": [
+            {
+              "denom": "stake",
+              "amount": "50000000"
+            }
+          ],
+          "burn_vote_quorum": false,
+          "burn_proposal_deposit_prevote": false,
+          "burn_vote_veto": true,
+          "min_deposit_ratio": "0.010000000000000000"
+        },
+        "constitution": ""
       },
-      "constitution": ""
-    },
     "ibc": {
       "client_genesis": {
         "clients": [],
@@ -363,15 +396,21 @@
         "max_supply": "0"
       }
     },
-    "privacy": {
-      "params": {
-        "max_shield_amount": "10000000000000000000000",
-        "pool_cap_ratio": 10,
-        "privacy_gas_multiplier": 200,
-        "vk_registration_fee": "100000000000000000000",
-        "max_known_roots": 100
-      }
-    },
+      "privacy": {
+        "params": {
+          "max_shield_amount": "10000000000000000000000",
+          "pool_cap_ratio": 10,
+          "privacy_gas_multiplier": 200,
+          "vk_registration_fee": "100000000000000000000",
+          "max_known_roots": 100,
+          "mixer_base_reward": "1000000",
+          "mixer_reward_multiplier": "0.0001",
+          "mixer_min_lock_blocks": 200,
+          "mixer_cooldown_blocks": 500,
+          "mixer_max_reward_per_day": "10000000",
+          "mixer_min_amount": "100000000"
+        }
+      },
     "slashing": {
       "params": {
         "signed_blocks_window": "10000",

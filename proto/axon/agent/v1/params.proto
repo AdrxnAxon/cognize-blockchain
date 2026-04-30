@@ -37,11 +37,29 @@ message Params {
   string l2_mutual_report_penalty = 23; // default "0.1", range [0, 0.5]
   string l2_no_evidence_weight = 24;    // default "0.3", range [0, 1.0]
 
-  // Reward distribution (M4)
-  uint64 proposer_reward_bps = 25;   // default 2000 (20%)
-  uint64 validator_pool_bps = 26;    // default 5500 (55%)
-  uint64 reputation_pool_bps = 27;   // default 2500 (25%), sum must be 10000
+  // Reward distribution (M4) - basis points, sum must be 10000
+  uint64 proposer_reward_bps = 25;   // default 1500 (15%)
+  uint64 validator_pool_bps = 26;    // default 3500 (35%)
+  uint64 reputation_pool_bps = 27;   // default 2000 (20%)
+  uint64 privacy_share_bps = 29;     // default 300 (3%)
+  uint64 governance_share_bps = 30;  // default 700 (7%)
+  uint64 service_share_bps = 31;     // default 800 (8%)
+  uint64 ai_challenge_share_bps = 32; // default 700 (7%)
+  uint64 staking_share_bps = 33;     // default 500 (5%)
 
   // Anti-Sybil (S2)
   string contribution_cap_multiplier = 28; // default "3.0", range [1.0, 10.0]
+
+  // Tokenomics burns (whitepaper §10.5)
+  uint64 register_burn = 34;       // default 25_000_000 (25 COGNIZE) anti-sybil
+  uint64 deploy_burn = 35;         // default 10_000_000 (10 COGNIZE)
+  uint64 service_burn = 36;        // default 5_000_000 (5 COGNIZE)
+  uint64 dataset_burn = 37;        // default 15_000_000 (15 COGNIZE)
+  uint64 model_burn = 38;          // default 20_000_000 (20 COGNIZE)
+
+  // Heartbeat penalties
+  int64 missed_heartbeat_penalty1 = 39; // default -5
+  int64 missed_heartbeat_penalty2 = 40; // default -15
+  int64 missed_heartbeat_penalty3 = 41; // default -50
+  int64 offline_penalty = 42;           // default -100
 }
