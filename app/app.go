@@ -207,12 +207,12 @@ type CognizeApp struct {
 	EVMMempool      *evmmempool.ExperimentalEVMMempool
 
 	// Cognize custom keepers
-	AgentKeeper     agentkeeper.Keeper
-	PrivacyKeeper   privacykeeper.Keeper
-	MessagingKeeper messagingkeeper.Keeper
-	VerifyKeeper    verifykeeper.Keeper
-	ChannelsKeeper   channelskeeper.Keeper
-	StateKeeper     statekeeper.Keeper
+	AgentKeeper       agentkeeper.Keeper
+	PrivacyKeeper     privacykeeper.Keeper
+	MessagingKeeper   messagingkeeper.Keeper
+	VerifyKeeper      verifykeeper.Keeper
+	ChannelsKeeper     channelskeeper.Keeper
+	StateKeeper       statekeeper.Keeper
 
 	ModuleManager      *module.Manager
 	BasicModuleManager module.BasicManager
